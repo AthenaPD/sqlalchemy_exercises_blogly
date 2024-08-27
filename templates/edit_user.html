@@ -3,13 +3,19 @@
 {% block content %}
 <h1>Edit a user</h1>
 <form action="/users/{{user.id}}/edit" method="POST">
-    <label for="fname">First Name</label><br>
-    <input type="text" id="fname" name="fname" placeholder="Enter a first name" value="{{user.first_name}}" required><br>
-    <label for="lname">Last Name</label><br>
-    <input type="text" id="lname" name="lname" placeholder="Enter a last name" value="{{user.last_name}}" required><br>
-    <label for="image-url">Image URL</label><br>
-    <input type="text" id="image-url" name="image-url" placeholder="Provide an image of this user" value="{{user.image_url}}"><br>
-    <button type="submit" formaction="/users" formmethod="GET">Cancel</button>
-    <button type="submit">Save</button>
+    <div class="mb-3">
+        <label for="fname" class="form-label fw-semibold fs-5">First Name</label><br>
+        <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter a first name" value="{{user.first_name}}" required>
+    </div>
+    <div class="mb-3">
+        <label for="lname" class="form-label fw-semibold fs-5">Last Name</label><br>
+        <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter a last name" value="{{user.last_name}}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label fw-semibold fs-5" for="image-url">Image URL</label><br>
+        <input class="form-control" type="text" id="image-url" name="image-url" placeholder="Provide an image of this user" value="{{user.image_url}}">
+    </div>
+    <button class="btn btn-outline-success" type="submit" formaction="/users" formmethod="GET">Cancel</button>
+    <button class="btn btn-success" type="submit">Save</button>
 </form>
 {% endblock %}

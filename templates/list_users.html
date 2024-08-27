@@ -2,12 +2,12 @@
 {% block title %}All Users{% endblock %}
 {% block content %}
 <h1>Users</h1>
-<ul>
+<ul class="fw-semibold fs-4">
     {% for user in users %}
         <li><a href="/users/{{user.id}}">{{user.full_name}}</a></li>
     {% endfor %}
 </ul>
 <form action="/users/new">
-    <button type="submit">Add user</button>
+    <button class="btn btn-secondary" type="submit">Add user</button>
 </form>
 {% endblock %}

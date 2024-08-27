@@ -5,7 +5,7 @@
 <p>{{post.content}}</p>
 <p>By <a href="/users/{{post.user.id}}">{{post.user.full_name}}</a> on {{post.formatted_date}}</p>
 <form action="/posts/{{post.id}}/edit">
-    <button type="submit">Edit</button>
-    <button type="submit" formaction="/posts/{{post.id}}/delete" formmethod="POST">Delete</button>
+    <button class="btn btn-primary" type="submit">Edit</button>
+    <button class="btn btn-danger" type="submit" formaction="/posts/{{post.id}}/delete" formmethod="POST">Delete</button>
 </form>
 {% endblock %}

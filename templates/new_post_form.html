@@ -3,11 +3,15 @@
 {% block content %}
 <h1>Add Post for {{user.full_name}}</h1>
 <form action="/users/{{user.id}}/posts/new" method="POST">
-    <label for="ptitle">Title</label>
-    <input type="text" id="ptitle" name="ptitle" placeholder="Enter a title for the post" required><br>
-    <label for="pcontent">Content</label>
-    <textarea id="pcontent" name="pcontent" placeholder="Enter details of your post" rows="10" cols="100"></textarea><br>
-    <button type="submit" formaction="/users/{{user.id}}" formmethod="GET">Cancel</button>
-    <button type="submit">Add</button>
+    <div class="mb-3">
+        <label for="ptitle" class="form-label fw-semibold fs-5">Title</label>
+        <input class="form-control" type="text" id="ptitle" name="ptitle" placeholder="Enter a title for the post" required>
+    </div>
+    <div class="mb-3">
+        <label for="pcontent" class="form-label fw-semibold fs-5">Content</label>
+        <textarea class="form-control" id="pcontent" name="pcontent" placeholder="Enter details of your post" rows="10" cols="100"></textarea><br>
+    </div>
+    <button class="btn btn-outline-success" type="submit" formaction="/users/{{user.id}}" formmethod="GET">Cancel</button>
+    <button class="btn btn-success" type="submit">Add</button>
 </form>
 {% endblock %}

@@ -11,6 +11,7 @@ with app.app_context():
 
     # If table isn't empty, empty it
     User.query.delete()
+    Post.query.delete()
 
     # Add users
     summer = User(first_name='Summer', last_name='Winter')

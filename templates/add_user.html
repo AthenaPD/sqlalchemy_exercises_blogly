@@ -2,13 +2,21 @@
 {% block title %}Create a user{% endblock %}
 {% block content %}
 <h1>Create a user</h1>
-<form action="/users/new" method="POST">
-    <label for="fname">First Name</label><br>
-    <input type="text" id="fname" name="fname" placeholder="Enter a first name" required><br>
-    <label for="lname">Last Name</label><br>
-    <input type="text" id="lname" name="lname" placeholder="Enter a last name" required><br>
-    <label for="image-url">Image URL</label><br>
-    <input type="text" id="image-url" name="image-url" placeholder="Provide an image of this user"><br>
-    <button type="submit">Add</button>
-</form>
+<div class="mt-5">
+    <form action="/users/new" method="POST">
+        <div class="mb-3">
+            <label for="fname" class="form-label fw-semibold fs-5">First Name</label><br>
+            <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter a first name" required><br>
+        </div>
+        <div class="mb-3">
+            <label for="lname" class="form-label fw-semibold fs-5">Last Name</label><br>
+            <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter a last name" required><br>
+        </div>
+        <div class="mb-3">
+            <label for="image-url" class="form-label fw-semibold fs-5">Image URL</label><br>
+            <input class="form-control" type="text" id="image-url" name="image-url" placeholder="Provide an image URL of this user"><br>
+        </div>
+        <button class="btn btn-success" type="submit">Add</button>
+    </form>
+</div>
 {% endblock %}
