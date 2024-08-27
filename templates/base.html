@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- <link rel="stylesheet" href="/static/app.css"> -->
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <!-- {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <section class="messages">
+                {% for msg in messages %}
+                <p>{{msg}}</p>
+                {% endfor %}
+            </section>
+        {% endif %}
+        {% endwith %} -->
+        {% block content %}{% endblock %}
+
+        <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        <script src="/static/app_oo.js"></script> -->
+    </body>
+</html>
