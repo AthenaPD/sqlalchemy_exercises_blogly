@@ -11,7 +11,20 @@
         <label for="pcontent" class="form-label fw-semibold fs-5">Content</label>
         <textarea class="form-control" id="pcontent" name="pcontent" placeholder="Enter details of your post" rows="10" cols="100">{{post.content}}</textarea>
     </div>
-    <button class="btn btn-outline-success" type="submit" formaction="/users/{{post.user.id}}" formmethod="GET">Cancel</button>
-    <button class="btn btn-success" type="submit">Edit</button>
+
+    {% for tag in tags %}
+        <div>
+            {% if tag in post.tags %}
+                <input type="checkbox" id="tag-{{tag.id}}" name="tags" value="{{tag.id}}" checked>
+            {% else %}
+                <input type="checkbox" id="tag-{{tag.id}}" name="tags" value="{{tag.id}}">
+            {% endif %}
+            <label class="fw-semibold fs-5" for="tag-{{tag.id}}">{{tag.name}}</label><br>
+        </div>
+    {% endfor %}
+    <div class="mt-3">
+        <button class="btn btn-outline-success" type="submit" formaction="/users/{{post.user.id}}" formmethod="GET">Cancel</button>
+        <button class="btn btn-success" type="submit">Edit</button>
+    </div>
 </form>
 {% endblock %}

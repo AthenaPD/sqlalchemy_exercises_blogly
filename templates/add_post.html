@@ -7,11 +7,20 @@
         <label for="ptitle" class="form-label fw-semibold fs-5">Title</label>
         <input class="form-control" type="text" id="ptitle" name="ptitle" placeholder="Enter a title for the post" required>
     </div>
-    <div class="mb-3">
+    <div class="mb-1">
         <label for="pcontent" class="form-label fw-semibold fs-5">Content</label>
         <textarea class="form-control" id="pcontent" name="pcontent" placeholder="Enter details of your post" rows="10" cols="100"></textarea><br>
     </div>
-    <button class="btn btn-outline-success" type="submit" formaction="/users/{{user.id}}" formmethod="GET">Cancel</button>
-    <button class="btn btn-success" type="submit">Add</button>
+
+    {% for tag in tags %}
+        <div>
+            <input type="checkbox" id="tag-{{tag.id}}" name="tag-{{tag.id}}">
+            <label class="fw-semibold fs-5" for="tag-{{tag.id}}">{{tag.name}}</label><br>
+        </div>
+    {% endfor %}
+    <div class="mt-3">
+        <button class="btn btn-outline-success" type="submit" formaction="/users/{{user.id}}" formmethod="GET">Cancel</button>
+        <button class="btn btn-success" type="submit">Add</button>
+    </div>
 </form>
 {% endblock %}

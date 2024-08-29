@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Create a tag{% endblock %}
+{% block content %}
+<h1 class="text-center">Create a tag</h1>
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <form action="/tags/new" method="POST">
+            <div class="mb-3">
+                <label for="tname" class="form-label fw-semibold fs-5">Name</label>
+                <input class="form-control" type="text" id="tname" name="tname" placeholder="Enter a name for the tag" required>
+            </div>
+
+            {% for post in posts %}
+            <div>
+                <input type="checkbox" id="post-{{post.id}}" name="posts" value="{{post.id}}">
+                <label class="fw-semibold fs-5" for="post-{{post.id}}">{{post.title}}</label>
+            </div>
+            {% endfor %}
+            <button class="btn btn-outline-success" type="submit" formaction="/tags" formmethod="GET">Cancel</button>
+            <button class="btn btn-success" type="submit">Add</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

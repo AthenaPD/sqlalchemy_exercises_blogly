@@ -1,6 +1,6 @@
 """Seed file to make sample data for blogly db."""
 
-from models import User, db, Post
+from models import User, db, Post, Tag, PostTag
 from app import app
 
 with app.app_context():
@@ -37,4 +37,29 @@ with app.app_context():
 
     # add posts and commit
     db.session.add_all([summer_p1, summer_p2, alan_p1, joel_p1, joel_p2, jane_p1, jane_p2, jane_p3])
+    db.session.commit()
+
+    # Add tags
+    tag_fun = Tag(name='Fun')
+    tag_flask = Tag(name='Flask')
+    tag_ig = Tag(name='IG')
+    tag_pet = Tag(name='Pet')
+    tag_sqla = Tag(name='SQL Alchemy')
+
+    db.session.add_all([tag_fun, tag_flask, tag_ig, tag_pet, tag_sqla])
+    db.session.commit()
+
+    # Add posts_tags
+    pt_fun1 = PostTag(post_id=2, tag_id=1)
+    pt_fun2 = PostTag(post_id=3, tag_id=1)
+    pt_fun3 = PostTag(post_id=8, tag_id=1)
+    pt_flask = PostTag(post_id=1, tag_id=2)
+    pt_ig = PostTag(post_id=4, tag_id=3)
+    pt_pet1 = PostTag(post_id=3, tag_id=4)
+    pt_pet2 = PostTag(post_id=5, tag_id=4)
+    pt_pet3 = PostTag(post_id=7, tag_id=4)
+    pt_pet4 = PostTag(post_id=8, tag_id=4)
+    pt_sqla = PostTag(post_id=6, tag_id=5)
+
+    db.session.add_all([pt_fun1, pt_fun2, pt_fun3, pt_flask, pt_ig, pt_pet1, pt_pet2, pt_pet3, pt_pet4, pt_sqla])
     db.session.commit()
