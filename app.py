@@ -6,7 +6,8 @@ from models import db, connect_db, User, Post, Tag, PostTag
 from datetime import datetime, timezone
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_test'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'Orion'
@@ -19,7 +20,6 @@ connect_db(app)
 def root():
     """Home/root page."""
     posts = Post.query.order_by(Post.created_at.desc()).limit(5).all()
-    # raise
     return render_template('home_page.html', posts=posts)
 
 @app.route('/users')
@@ -40,6 +40,8 @@ def submit_new_user():
     last_name = request.form['lname']
     image_url = request.form['image-url'] if request.form['image-url'] else None
 
+    import pdb
+    pdb.set_trace()
     new_user = User(first_name=first_name, last_name=last_name, image_url=image_url)
     db.session.add(new_user)
     db.session.commit()
@@ -175,16 +177,19 @@ def list_all_tags():
 
 @app.route('/tags/<int:tag_id>')
 def show_tag_details(tag_id):
+    """A page to show the details of a tag."""
     tag = Tag.query.get(tag_id)
     return render_template('tag_details.html', tag=tag)
 
 @app.route('/tags/new')
 def add_tag():
+    """Add a new tag form page."""
     all_posts = Post.query.all()
     return render_template('add_tag.html', posts=all_posts)
 
 @app.route('/tags/new', methods=['POST'])
 def submit_new_tag():
+    """Process add new tag form, add a new tag to database, redirect to all tag page."""
     tag_name = request.form['tname']
     new_tag = Tag(name=tag_name)
 
@@ -201,12 +206,14 @@ def submit_new_tag():
 
 @app.route('/tags/<int:tag_id>/edit')
 def edit_tag(tag_id):
+    """A page to display the edit a tag form."""
     tag = Tag.query.get(tag_id)
     all_posts = Post.query.all()
     return render_template('edit_tag.html', tag=tag, posts=all_posts)
 
 @app.route('/tags/<int:tag_id>/edit', methods=['POST'])
 def submit_tag_edit(tag_id):
+    """Process edit tag form, update database, redirect to all tag list."""
     tag = Tag.query.get_or_404(tag_id)
     tag.name = request.form['tname']
 
@@ -232,6 +239,7 @@ def submit_tag_edit(tag_id):
 
 @app.route('/tags/<int:tag_id>/delete', methods=['POST'])
 def delete_tag(tag_id):
+    """Delete a tag from database, redirect to all tag list."""
     Tag.query.filter_by(id=tag_id).delete()
     db.session.commit()
 
